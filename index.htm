@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calc.css" />
+</head>
+
+<body>
+    <table>
+        <caption>
+            Calculator
+        </caption>
+        <thead>
+            <tr>
+                <th colspan="4"><input type="number" value="0" class="screen" /></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><button class="btn btn-digit">1</button></td>
+                <td><button class="btn btn-digit">2</button></td>
+                <td><button class="btn btn-digit">3</button></td>
+                <td><button class="btn reset">AC</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-digit">4</button></td>
+                <td><button class="btn btn-digit">5</button></td>
+                <td><button class="btn btn-digit">6</button></td>
+
+                <td><button class="btn sum operator">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-digit">7</button></td>
+                <td><button class="btn btn-digit">8</button></td>
+                <td><button class="btn btn-digit">9</button></td>
+                <td><button class="btn diff operator">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="btn btn-digit">.</button></td>
+                <td><button class="btn btn-digit">0</button></td>
+                <td><button class="btn divide">/</button></td>
+                <td><button class="btn of operator">*</button></td>
+            </tr>
+            <tr>
+                <td colspan="4"><button class="btn total operator">=</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <script src="calcu.js"></script>
+</body>
+
+</html>
