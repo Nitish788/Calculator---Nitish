@@ -20,10 +20,13 @@ table {
     border-radius: 18px;
     font-size: 1.8em;
     background-color: white;
+    cursor: pointer;
+    font-family: "Righteous", cursive;
 }
 
 .total {
-    width: 11.5rem;
+    width: 11rem;
+    border-radius: 0px;
 }
 
 caption {
