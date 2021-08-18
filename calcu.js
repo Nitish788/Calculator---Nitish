@@ -9,11 +9,10 @@ const clearLastEl = document.querySelector(".delete");
 
 let dis1Num = "";
 let dis2Num = "";
-let output = null;
+let output = "";
 let lastOperation = "";
 let haveDot = false;
 console.log(numbersEl);
-console.log(screen2El.innerText);
 numbersEl.forEach((num) => {
     num.addEventListener("click", (e) => {
         if (e.target.innerText === "." && !haveDot) {
@@ -23,7 +22,7 @@ numbersEl.forEach((num) => {
         }
         dis2Num += e.target.innerText;
         screen2El.innerText = dis2Num;
-        console.log();
+        console.log(dis2Num);
     });
 });
 
@@ -32,11 +31,13 @@ operationEl.forEach((operator) => {
         if (!dis2Num) return;
         haveDot = false;
         const operationName = e.target.innerText;
+
         if (dis1Num && dis2Num && lastOperation) {
             mathOperation();
         } else {
             output = parseFloat(dis2Num);
         }
+
         clearVar(operationName);
         lastOperation = operationName;
         console.log(output);
@@ -51,7 +52,7 @@ function clearVar(name = "") {
 }
 
 function mathOperation() {
-    if (lastOperation === "*") {
+    if (lastOperation === "x") {
         output = parseFloat(output) * parseFloat(dis2Num);
     } else if (lastOperation === "+") {
         output = parseFloat(output) + parseFloat(dis2Num);
@@ -65,8 +66,14 @@ function mathOperation() {
 }
 
 totalEl.addEventListener("click", () => {
-    if (!dis2Num || !dis1Num) return;
-    haveDot = false;
+    if (!dis2Num || !dis1Num) {
+        return;
+    } else if (dis2Num == 0 && lastOperation === "/") {
+        return (screen2El.innerText = "Not Define");
+    } else if (dis2Num == "." && lastOperation) {
+        return (screen2El.innerText = "Error");
+    }
+    haveDot = true;
     mathOperation();
     clearVar();
     screen2El.innerText = output;
@@ -81,6 +88,7 @@ clearAllEl.addEventListener("click", () => {
     screen1El.innerText = "";
     screen2El.innerText = "";
     output = "";
+    haveDot = false;
 });
 
 clearLastEl.addEventListener("click", () => {

@@ -5,19 +5,19 @@
 }
 
 table {
-    border: 4px solid black;
-    width: 25rem;
+    border: 0.3rem solid black;
+    max-width: 25rem;
     margin: auto;
     margin-top: 0.6rem;
-    border-radius: 5px;
+    border-radius: 0.4rem;
     background-color: black;
 }
 
 .btn {
     width: 5rem;
-    margin: 6px;
-    height: 60px;
-    border-radius: 18px;
+    margin: 0.4rem;
+    height: 3.7rem;
+    border-radius: 1.1rem;
     font-size: 1.8em;
     background-color: white;
     cursor: pointer;
@@ -32,16 +32,17 @@ table {
 caption {
     font-size: 3rem;
     background-color: orange;
-    border-radius: 4px;
-    margin-bottom: 1px;
+    border-radius: 0.2rem;
+    margin-bottom: 0.01rem;
 }
 
 div {
-    padding: 20px;
+    padding: 1.2rem;
     font-size: 2.2em;
     background-color: black;
     color: white;
     text-align: right;
+    font-family: "Righteous", cursive;
 }
 
 button:hover {
