@@ -20,6 +20,9 @@ numbersEl.forEach((num) => {
         } else if (e.target.innerText === "." && haveDot) {
             return;
         }
+        if (isNaN(output)) {
+            return;
+        }
         dis2Num += e.target.innerText;
         screen2El.innerText = dis2Num;
         console.log(dis2Num);
@@ -28,7 +31,11 @@ numbersEl.forEach((num) => {
 
 operationEl.forEach((operator) => {
     operator.addEventListener("click", (e) => {
-        if (!dis2Num) return;
+        if (!dis2Num) {
+            return;
+        } else if (dis2Num == ".") {
+            return;
+        }
         haveDot = false;
         const operationName = e.target.innerText;
 
@@ -36,6 +43,9 @@ operationEl.forEach((operator) => {
             mathOperation();
         } else {
             output = parseFloat(dis2Num);
+        }
+        if (isNaN(output)) {
+            return;
         }
 
         clearVar(operationName);
@@ -68,14 +78,13 @@ function mathOperation() {
 totalEl.addEventListener("click", () => {
     if (!dis2Num || !dis1Num) {
         return;
-    } else if (dis2Num == 0 && lastOperation === "/") {
-        return (screen2El.innerText = "Not Define");
-    } else if (dis2Num == "." && lastOperation) {
-        return (screen2El.innerText = "Error");
     }
     haveDot = true;
     mathOperation();
     clearVar();
+    if (dis2Num == 0 && lastOperation === "/") {
+        return (screen2El.innerText = "Not Defined");
+    }
     screen2El.innerText = output;
 
     dis2Num = output;
