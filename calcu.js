@@ -14,93 +14,97 @@ let lastOperation = "";
 let haveDot = false;
 console.log(numbersEl);
 numbersEl.forEach((num) => {
-    num.addEventListener("click", (e) => {
-        if (e.target.innerText === "." && !haveDot) {
-            haveDot = true;
-        } else if (e.target.innerText === "." && haveDot) {
-            return;
-        }
-        if (isNaN(output)) {
-            return;
-        }
-        dis2Num += e.target.innerText;
-        screen2El.innerText = dis2Num;
-        console.log(dis2Num);
-    });
+  num.addEventListener("click", (e) => {
+    if (e.target.innerText === "." && !haveDot) {
+      haveDot = true;
+    } else if (e.target.innerText === "." && haveDot) {
+      return;
+    }
+    if (isNaN(output)) {
+      return;
+    }
+    dis2Num += e.target.innerText;
+    screen2El.innerText = dis2Num;
+    console.log(dis2Num);
+  });
 });
 
 operationEl.forEach((operator) => {
-    operator.addEventListener("click", (e) => {
-        if (!dis2Num) {
-            return;
-        } else if (dis2Num == ".") {
-            return;
-        }
-        haveDot = false;
-        const operationName = e.target.innerText;
+  operator.addEventListener("click", (e) => {
+    if (!dis2Num) {
+      return;
+    } else if (dis2Num == ".") {
+      return;
+    }
+    haveDot = false;
+    const operationName = e.target.innerText;
 
-        if (dis1Num && dis2Num && lastOperation) {
-            mathOperation();
-        } else {
-            output = parseFloat(dis2Num);
-        }
-        if (isNaN(output)) {
-            return;
-        }
+    if (dis1Num && dis2Num && lastOperation) {
+      mathOperation();
+    } else {
+      output = parseFloat(dis2Num);
+    }
+    if (isNaN(output)) {
+      return;
+    }
 
-        clearVar(operationName);
-        lastOperation = operationName;
-        console.log(output);
-    });
+    clearVar(operationName);
+    lastOperation = operationName;
+    console.log(output);
+  });
 });
 
 function clearVar(name = "") {
-    dis1Num += dis2Num + " " + name + " ";
-    screen1El.innerText = dis1Num;
-    screen2El.innerText = "";
-    dis2Num = "";
+  dis1Num += dis2Num + " " + name + " ";
+  screen1El.innerText = dis1Num;
+  screen2El.innerText = "";
+  dis2Num = "";
 }
 
 function mathOperation() {
-    if (lastOperation === "x") {
-        output = parseFloat(output) * parseFloat(dis2Num);
-    } else if (lastOperation === "+") {
-        output = parseFloat(output) + parseFloat(dis2Num);
-    } else if (lastOperation === "-") {
-        output = parseFloat(output) - parseFloat(dis2Num);
-    } else if (lastOperation === "/") {
-        output = parseFloat(output) / parseFloat(dis2Num);
-    } else if (lastOperation === "%") {
-        output = (parseFloat(output) * parseFloat(dis2Num)) / 100;
-    }
+  if (lastOperation === "x") {
+    output = parseFloat(output) * parseFloat(dis2Num);
+  } else if (lastOperation === "+") {
+    output = parseFloat(output) + parseFloat(dis2Num);
+  } else if (lastOperation === "-") {
+    output = parseFloat(output) - parseFloat(dis2Num);
+  } else if (lastOperation === "/") {
+    output = parseFloat(output) / parseFloat(dis2Num);
+  } else if (lastOperation === "%") {
+    output = (parseFloat(output) * parseFloat(dis2Num)) / 100;
+  }
 }
 
 totalEl.addEventListener("click", () => {
-    if (!dis2Num || !dis1Num) {
-        return;
-    }
-    haveDot = true;
-    mathOperation();
+  if (!dis2Num || !dis1Num) {
+    return;
+  }
+  if (dis2Num == ".") {
+    return;
+  }
+  haveDot = false;
+  mathOperation();
+  if (dis2Num == 0 && lastOperation === "/") {
     clearVar();
-    if (dis2Num == 0 && lastOperation === "/") {
-        return (screen2El.innerText = "Not Defined");
-    }
-    screen2El.innerText = output;
-
-    dis2Num = output;
-    dis1Num = "";
+    return (screen2El.innerText = "Not Defined");
+    // return (output = "Not Defined");
+  }
+  clearVar();
+  screen2El.innerText = output;
+  dis2Num = output;
+  dis1Num = "";
 });
 
 clearAllEl.addEventListener("click", () => {
-    dis1Num = "";
-    dis2Num = "";
-    screen1El.innerText = "";
-    screen2El.innerText = "";
-    output = "";
-    haveDot = false;
+  dis1Num = "";
+  dis2Num = "";
+  screen1El.innerText = "";
+  screen2El.innerText = "";
+  output = "";
+  haveDot = false;
 });
 
 clearLastEl.addEventListener("click", () => {
-    screen2El.innerText = "";
-    dis2Num = "";
+  screen2El.innerText = "";
+  dis2Num = "";
 });
